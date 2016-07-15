@@ -1,0 +1,119 @@
+<div class="jumbotron">
+  <div id="ammount">
+    <form method="post" ng-show="!payment" ng-submit="amoutSubmit(amountform)" name="amountform" role="form" id="ammount-pay" ng-validate="validatAmmount" class="form-horizontal">
+      <fieldset>
+        <legend>Basic Info</legend>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="amount">Ammount</label>
+          <div class="col-sm-9">
+            <input type="number" class="form-control" ng-model="amount" name="amount" id="amount" placeholder="amount">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label" for="currency">Currency</label>
+          <div class="col-sm-9">
+            <select class="form-control col-sm-2" name="currency" ng-model="currency" id="country">
+              <option value="">Select Currency</option>
+              <option value="EUR">EURO</option>
+              <option value="USD">Dollar</option>
+          </select>
+          </div>
+        </div>
+        <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <button type="submit" class="btn btn-success" ng-disabled="amtdisabled">Pay by Bank</button>
+        </div>
+      </div>
+      </fieldset>
+    </form>
+  </div>
+  <div id="bank" ng-show="payment">
+    <form class="form-horizontal" role="form" method="POST" target="cnpIframe" name="bankform" lang="en" ng-submit="formSubmit(bankform)" ng-validate="validationOptions">
+    <fieldset>
+      <legend>Payment</legend>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="bankAccount.holder">Account Holder's Name</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" ng-model="bankAccountholder" name="bankAccount.holder" id="account-holder" placeholder="Account Holder's Name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="bankAccount.bankName">Bank Name</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" ng-model="bankAccountbankName" name="bankAccount.bankName" id="bankname" placeholder="Bank Name">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="bankAccount.number">Account Number</label>
+        <div class="col-sm-9">
+          <input type="number" class="form-control" ng-model="bankAccountnumber" name="bankAccount.number" id="account-number" placeholder="Account Number">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="bankAccount.iban">IBAN Number</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" ng-model="bankAccountiban" name="bankAccount.iban" id="iban-number" placeholder="IBAN Number">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="bankAccount.bankCode">Bank Code</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" ng-model="bankAccountbankCode" name="bankAccount.bankCode" id="bank-code" placeholder="Bank Code">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="bankAccount.bic">BIC/Swift Code</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" ng-model="bankAccountbic" name="bankAccount.bic" id="bank-code" placeholder="BIC Code">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="bankAccount.country">Country</label>
+        <div class="col-sm-9">
+          <select class="form-control col-sm-2" name="bankAccount.country" ng-model="bankAccountcountry" id="country">
+              <option value="">Select country</option>
+                <option ng-repeat="(key, value) in countrieslist" value="{{::key}}">{{::value}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="bankAccount.mandate.id">Mandate ID</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" ng-model="bankAccountmandateid" name="bankAccount.mandate.id" id="bank-code" placeholder="Bank Mandate ID">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="bankAccountmandatedateOfSignature">Mandate Signature Date</label>
+        <div class="col-sm-9">
+          <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="bankAccountmandatedateOfSignature" name="bankAccount.mandate.dateOfSignature" id="mandate-date" is-open="popupopen" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-focus="open1()"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-3 control-label" for="transactionDueDate">Due Date</label>
+        <div class="col-sm-9">
+          <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup="MM/dd/yyyy" ng-model="transactionDueDate" name="transactionDueDate" id="transaction-date" is-open="popupopen2" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-focus="open2()"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+          <button type="submit" class="btn btn-success" ng-disabled="submitting">Pay Now</button>
+        </div>
+      </div>
+    </fieldset>
+  
+    </form>
+</div>
+</div>
+
+
+<!-- <script src="http://test.oppwa.com/v1/paymentWidgets.js?checkoutId=EC3A98A5E2CCE343EEC655324EC1A794.sbg-vm-tx02"></script> -->
